@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// singleton
+// singleton으로 모든 기능 관리
 public class Managers : MonoBehaviour
 {
     // Start is called before the first frame update
