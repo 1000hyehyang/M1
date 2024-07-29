@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // singleton으로 모든 기능 관리
-public class Managers : MonoBehaviour
+public class Managers : MonoBehaviour // 전역 - 서브시스템
 {
     /* 유니티에서는 오브젝트를 판 다음에 컴포넌트라는 부품을 붙여줘야 적용이 됨. 비로소 코드가 활성화되는 것임.
      * 그 작업을 일일이 hierachy 창에서 하는 게 아니라 아래 코드로 생성해주는 것임 */
@@ -11,7 +11,22 @@ public class Managers : MonoBehaviour
     private static Managers s_instance;
     private static Managers Instance {  get { Init();  return s_instance; } }
 
+    #region Core
+    private DataManager _data = new DataManager();
+    private PoolManager _pool = new PoolManager();
+    private ResourceManager _resource = new ResourceManager();
+    private SceneManager _scene = new SceneManager();
+    private SoundManager _sound = new SoundManager();
+    private UIManager _ui = new UIManager();
 
+    public static DataManager Data { get { return Instance?._data; } }
+    public static PoolManager Pool { get { return Instance?._pool; } }
+    public static ResourceManager Resource { get { return Instance?._resource; } }
+    public static SceneManager Scene { get { return Instance?._scene; } }
+    public static SoundManager Sound { get { return Instance?._sound; } }
+    public static UIManager UI { get { return Instance?._ui; } }
+
+    #endregion
     public static void Init() 
     {
         if (s_instance == null)
